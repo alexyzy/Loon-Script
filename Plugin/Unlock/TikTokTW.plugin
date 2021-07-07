@@ -12,10 +12,11 @@ DOMAIN-KEYWORD,-tiktokcdn-com
 USER-AGENT,tiktok*
 
 [URL Rewrite]
+#tiktok解锁直播区域限制
 (?<=_region=)CN(?=&) TW 307
-(?<=&app_version=)1[6-9]..(?=.?.?&) 100. 307
-(?<=\?version_code=)1[6-9]..(?=.?.?&) 100. 307
-^https://api[\w-]*?.tiktokv.com/aweme/v\d/policy/notice/? - reject
+(?<=&mcc_mnc=)4 2 307
+^(https?:\/\/(tnc|dm)[\w-]+\.\w+\.com\/.+)(\?)(.+) $1$4 302
+(?<=\d\/\?\w{7}_\w{4}=)1[6-9]..(?=.?.?&) 18.4 307
 
 [MITM]
-hostname = *.tiktokv.com, *.byteoversea.com, *.musical.ly, *.snssdk.com
+hostname = *.tiktokv.com,*.byteoversea.com,*.tik-tokapi.com
